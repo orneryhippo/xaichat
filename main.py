@@ -119,6 +119,12 @@ def not_found_error(error):
 def internal_error(error):
     return jsonify({'error': 'Internal server error'}), 500
 
+# Add a health check endpoint
+@app.route('/healthcheck')
+def healthcheck():
+    return jsonify({'status': 'ok'}), 200
+
+
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
